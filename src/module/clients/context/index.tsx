@@ -1,30 +1,36 @@
 'use client'
 
-import { ReactNode, createContext, useContext } from "react";
-import IClient from "../Domain/Client/interface";
+import { ReactNode, createContext, useContext, useState } from "react";
+import IClient from "../../../core/Domain/Client/interface";
+import Client from "@/core/Domain/Client";
 
-const INITIAL_VALUES: IClientContext = {
-    clients: [],
-    keys: []
+const INITIAL_VALUES = {
+    clients: [
+        Client.create({ name: 'Yuri', contact: 21999999999 }),
+        Client.create({ name: 'Alice', contact: 21999999999 }),
+        Client.create({ name: 'Erica', contact: 21999999999 }),
+    ],
 }
-const ClientContext = createContext<IClientContext>(INITIAL_VALUES)
+const ClientContext = createContext<IClientContext>(INITIAL_VALUES as IClientContext)
 
 export const useClientContext = () => useContext(ClientContext)
 
 export default function ClientContextProvider({ children }: { children: ReactNode }) {
-    const clients: IClient[] = [
-        { id: '0', name: 'Yuri', contact: 21999999999 },
-        { id: '1', name: 'Alice', contact: 21999999999 },
-        { id: '2', name: 'Erica', contact: 21999999999 },
-    ]
-    const keys = Object.keys(clients[0]) as Array<keyof IClient>
+    const [clients, setClients] = useState(INITIAL_VALUES.clients)
 
-    return <ClientContext.Provider value={{ clients, keys }}>
+    async function createClient({ name, contact }: CreateClientInput) {
+        const newClient = Client.create({ name, contact: +contact })
+        setClients(state => ([...state, newClient]))
+    }
+
+    return <ClientContext.Provider value={{ clients, createClient }}>
         {children}
     </ClientContext.Provider>
 }
 
 interface IClientContext {
     clients: IClient[]
-    keys: (keyof IClient)[]
+    createClient(input: CreateClientInput): Promise<void>
 }
+
+interface CreateClientInput { name: string, contact: string }
