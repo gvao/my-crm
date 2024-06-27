@@ -1,6 +1,6 @@
 import DomainEvents from "@/module/shared/DomainEvents";
-import Client from "../../Domain/Client";
-import IClient from "../../Domain/Client/interface";
+import Client from "../../../../core/Domain/Client";
+import IClient from "../../../../core/Domain/Client/interface";
 import { SaveRepository } from "../repository/interface";
 import UseCase from "./interface";
 import ClientCreatedEvent from "../events/ClientCreatedEvent";
