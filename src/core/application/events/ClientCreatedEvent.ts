@@ -1,4 +1,4 @@
-import { DomainEvent } from "@/module/shared/DomainEvents";
+import { DomainEvent } from "@/core/Domain/DomainEvents";
 
 export default class ClientCreatedEvent implements DomainEvent {
     type: string = 'ClientCreatedEvent'

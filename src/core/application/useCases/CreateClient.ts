@@ -1,9 +1,9 @@
-import DomainEvents from "@/module/shared/DomainEvents";
-import Client from "../../../../core/Domain/Client";
-import IClient from "../../../../core/Domain/Client/interface";
+import DomainEvents from "../../Domain/DomainEvents";
 import { SaveRepository } from "../repository/interface";
 import UseCase from "./interface";
 import ClientCreatedEvent from "../events/ClientCreatedEvent";
+import IClient from "../../Domain/Client";
+import Client from "../../Domain/Client";
 
 export default class CreateClient implements UseCase<CreateClientInput, void> {
     constructor(readonly clientRepository: ClientRepository) { }
