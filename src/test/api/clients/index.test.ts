@@ -1,6 +1,6 @@
+import { describe, expect, it } from "vitest";
 import Fetcher from "../../../utils/Fetcher";
 import IClient from "../../../core/Domain/Client/interface";
-import { describe, expect, it } from "vitest";
 
 describe('Api/clients', () => {
     const fetcher = new Fetcher('http://localhost:3000/api')
@@ -24,7 +24,6 @@ describe('Api/clients', () => {
 
     it('GET: [clientId]', async () => {
         const json = await fetcher.request(`/clients/${idClientFake}`)
-        console.log(json)
         const { client } = json
         expect(client.id).toBe(idClientFake)
     })
