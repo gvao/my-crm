@@ -12,7 +12,6 @@ describe('CreateClient', () => {
         DomainEvents.cadaster({
             type: 'ClientCreatedEvent', 
             handler() {
-                console.log('dspihd')
                 expect(clientRepository.clients).toHaveLength(1)
                 return Promise.resolve()
             }
