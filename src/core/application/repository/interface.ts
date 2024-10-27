@@ -9,3 +9,7 @@ export interface GetAllRepository<T> {
 export interface RemoveItemRepository<T> {
     remove(id: string): Promise<void>;
 }
+
+export interface getItemById<T> {
+    getById(id: string): Promise<T | undefined>;
+}
