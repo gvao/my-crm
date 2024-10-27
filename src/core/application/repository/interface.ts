@@ -5,3 +5,7 @@ export interface SaveRepository<T> {
 export interface GetAllRepository<T> {
     getAll(): Promise<T>;
 }
+
+export interface RemoveItemRepository<T> {
+    remove(id: string): Promise<void>;
+}
