@@ -1,8 +1,12 @@
-import { GetAllRepository, SaveRepository } from "@/core/application/repository/interface";
+import { GetAllRepository, RemoveItemRepository, SaveRepository } from "@/core/application/repository/interface";
 import IClient from "@/core/Domain/Client/interface";
 
 export default class ClientRepositoryInMemory implements IClientRepository {
     clients: IClient[] = []
+    async remove(id: string): Promise<void> {
+        const index = this.clients.findIndex(client => client.id === id)
+        this.clients.splice(index, 1)
+    }
     async getAll(): Promise<IClient[]> {
         return this.clients
     }
@@ -12,4 +16,4 @@ export default class ClientRepositoryInMemory implements IClientRepository {
 
 }
 
-type IClientRepository = SaveRepository<IClient> & GetAllRepository<IClient[]>
+type IClientRepository = SaveRepository<IClient> & GetAllRepository<IClient[]> & RemoveItemRepository<IClient>
