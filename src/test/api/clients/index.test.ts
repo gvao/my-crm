@@ -1,4 +1,5 @@
-import IClient from "@/core/Domain/Client/interface";
+import Fetcher from "../../../utils/Fetcher";
+import IClient from "../../../core/Domain/Client/interface";
 import { describe, expect, it } from "vitest";
 
 describe('Api/clients', () => {
@@ -15,10 +16,27 @@ describe('Api/clients', () => {
             name: 'YuriTest',
             contact: 21999999999,
         })
-        const { clients } = await fetcher.request('/clients')
+        const { clients } = await fetcher.request(`/clients`)
         const fakeCLient = (clients as IClient[]).find(client => client.name === 'YuriTest')
         idClientFake = fakeCLient?.id as string
         expect(clients).toHaveLength(1)
+    })
+
+    it('GET: [clientId]', async () => {
+        const json = await fetcher.request(`/clients/${idClientFake}`)
+        console.log(json)
+        const { client } = json
+        expect(client.id).toBe(idClientFake)
+    })
+
+    it('PUT', async () => {
+        await fetcher.request(`/clients/${idClientFake}`, 'PUT', {
+            name: 'YuriTestUpdated',
+            contact: 21999999999,
+        })
+        const { client } = await fetcher.request(`/clients/${idClientFake}`)
+        expect(client.name).toBe('YuriTestUpdated')
+        expect(client.contact).toBe(21999999999)
     })
 
     it('DELETE', async () => {
@@ -28,32 +46,3 @@ describe('Api/clients', () => {
     })
 
 })
-
-class Fetcher {
-    constructor(readonly baseUrl: string) { }
-    async request(path: string, method: string = 'GET', data: any = {}) {
-        const url = this.baseUrl + path
-        const options: Options = {
-            method,
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }
-        if (method !== 'GET' && !!data) {
-            options.body = JSON.stringify(data)
-        }
-        const response = await fetch(url, options)
-        const json = await response.json()
-        console.log({ method, json })
-        return json
-    }
-}
-
-
-interface Options {
-    method: string;
-    headers: {
-        [key: string]: string;
-    },
-    body?: string;
-}
