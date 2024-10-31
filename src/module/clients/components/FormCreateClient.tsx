@@ -14,7 +14,6 @@ export default function FormCreateClient() {
     const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
         createClient(state)
-        console.log(`submit`)
     }
     return (
         <form onSubmit={onSubmit} >

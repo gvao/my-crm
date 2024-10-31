@@ -9,12 +9,12 @@ export default async function ListClients() {
     return (
         <ul className={styles.list} >
             {clients.map(client => <>
-                <Link href={`/clients/${client.id}`} key={client.id}>
-                    <li  className={styles.list__item}>
+                <li className={styles.list__item} key={client.id}>
+                    <Link href={`/clients/${client.id}`} >
                         <span>{client.name}</span>
                         <span>{client.contact}</span>
-                    </li>
-                </Link>
+                    </Link>
+                </li>
             </>)}
         </ul>
     )

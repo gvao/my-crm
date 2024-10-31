@@ -3,7 +3,7 @@ import Fetcher from "@/utils/Fetcher"
 
 export default function ClientsGateway(): Gateway {
     const URL_BASE = process.env.NEXT_PUBLIC_URL_BASE as string
-    const fetcher = new Fetcher(URL_BASE)
+    const fetcher = new Fetcher(`${URL_BASE}/api`)
 
     async function getClientById(clientId: string) {
         const { client } = await fetcher.request(`/clients/${clientId}`)
