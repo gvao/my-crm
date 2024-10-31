@@ -2,7 +2,8 @@ import IClient from "@/core/Domain/Client/interface"
 import Fetcher from "@/utils/Fetcher"
 
 export default function ClientsGateway(): Gateway {
-    const fetcher = new Fetcher('http://localhost:3000/api')
+    const URL_BASE = process.env.NEXT_PUBLIC_URL_BASE as string
+    const fetcher = new Fetcher(URL_BASE)
 
     async function getClientById(clientId: string) {
         const { client } = await fetcher.request(`/clients/${clientId}`)
