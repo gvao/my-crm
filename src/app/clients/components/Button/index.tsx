@@ -1,5 +1,5 @@
-import styles from "./styles.module.css"
 import { ButtonHTMLAttributes } from "react"
+import styles from "./styles.module.css"
 
 const Button = ({ children, styleType = 'default', ...props }: ButtonProps) =>
     <button {...props} className={`${styles.button} ${styleType}`} >{children}</button>
