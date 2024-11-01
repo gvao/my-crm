@@ -11,8 +11,12 @@ export default class Fetcher {
         if (method !== 'GET' && !!data) {
             options.body = JSON.stringify(data)
         }
+
         const response = await fetch(url, { cache: "no-cache", ...options })
-        if(!response.status.toString().startsWith('2')) throw new Error('bad request')
+        if(!response.status.toString().startsWith('2')) {
+            console.error(`Fetcher error: `, response)
+            throw new Error('bad request')
+        }
         const json = await response.json()
         return json
     }
