@@ -1,0 +1,16 @@
+.wrapper {
+    padding: 8px 16px;
+    display: flex;
+    flex: 1 0 200px;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #2b2a33;
+}
+
+.input_style {
+    border: none;
+    background-color: inherit;
+    padding: 4px 0;
+    outline: none;
+}
