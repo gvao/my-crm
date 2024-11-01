@@ -4,7 +4,7 @@ import ClientsGateway from "@/module/clients/gateway/ClientsGateway"
 import { useRouter } from "next/navigation"
 import { FormEvent } from "react"
 import styles from './styles.module.css'
-import Button from "../Button"
+import Button from "../../../../module/shared/components/Button"
 import Input from "@/module/shared/components/Input"
 
 export default function FormClient() {

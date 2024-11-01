@@ -1,3 +1,4 @@
+"use server"
 
 import Link from "@/module/shared/components/Link"
 import styles from "./styles.module.css"
@@ -14,8 +15,10 @@ export default async function ListClients() {
                 {clients.map(client => <>
                     <li className={styles.list__item} key={client.id}>
                         <Link href={`/clients/${client.id}`} >
-                            <span>{client.name}</span>
-                            <span>{client.contact}</span>
+                            <div  >
+                                <span>{client.name}</span>
+                                <span>{client.contact}</span>
+                            </div>
                         </Link>
                     </li>
                 </>)}

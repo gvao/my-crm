@@ -3,9 +3,9 @@
 import ClientsGateway from "@/module/clients/gateway/ClientsGateway"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import Popup from "../Popup"
+import Popup from "../../../../module/shared/components/Popup"
 import styles from "./styles.module.css"
-import Button from "../Button"
+import Button from "../../../../module/shared/components/Button"
 
 export default function DeleteClient({ clientId }: { clientId: string }) {
     const [showPrompt, setShowPrompt] = useState<boolean>(false)

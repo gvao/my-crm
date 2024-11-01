@@ -5,7 +5,7 @@ import ListClients from './components/ListClients'
 export default async function ClientsPage() {
 
     return (<>
-        <Title>Clients</Title>
+        <Title>Meus clientes</Title>
         <FormClient />
         <ListClients />
     </>)
